@@ -1,7 +1,7 @@
 package ua.skillup.isogram;
 
 public class IsogramChecker {
-    public boolean isIsogram(String input) {
+    public static boolean isIsogram(String input) {
         // implementation
         return false;
     }
