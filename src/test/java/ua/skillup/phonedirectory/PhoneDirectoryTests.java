@@ -27,7 +27,7 @@ public class PhoneDirectoryTests {
 
     @Test
     public void testGetPhoneForMissingName() {
-        assertEquals(phoneDirectory.getPhone("John Doe").size(), 0);
+        assertEquals(phoneDirectory.searchByName("John Doe").size(), 0);
     }
 
     @Test
