@@ -58,4 +58,9 @@ public class PhoneDirectory {
     public void updateName(String phone, String name) {
         // implementation
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }
