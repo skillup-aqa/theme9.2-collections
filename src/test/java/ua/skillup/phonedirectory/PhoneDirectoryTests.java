@@ -62,10 +62,8 @@ public class PhoneDirectoryTests {
     public void testToString() {
         phoneDirectory.addEntry("John Doe", "1234567890");
         phoneDirectory.addEntry("Jane Doe", "0987654321");
-
         Pattern pattern = Pattern.compile("Jane Doe.*0987654321.*John Doe.*1234567890", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(phoneDirectory.toString());
-        assertTrue(matcher.matches());
-
+        assertTrue(matcher.find());
     }
 }

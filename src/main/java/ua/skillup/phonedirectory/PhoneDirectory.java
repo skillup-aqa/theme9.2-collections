@@ -74,6 +74,10 @@ public class PhoneDirectory {
 
     @Override
     public String toString() {
-        return null;
+        StringBuilder builder = new StringBuilder("=== Phone Directory ===\n\n");
+        phoneDirectory.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(e -> builder.append(e.getValue()).append(": ").append(e.getKey()).append("\n"));
+        return builder.toString();
     }
 }
