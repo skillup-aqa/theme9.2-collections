@@ -6,7 +6,7 @@ public class Cart {
      * @param product product name
      * @param quantity quantity of product
      */
-    public void addProduct(String product, int quantity) {
+    public void addProduct(Product product, int quantity) {
         // implementation
     }
 
@@ -15,7 +15,7 @@ public class Cart {
      * @param product product name
      * @throws IllegalArgumentException if product not found
      */
-    public void setProductQuantity(String product, int quantity) {
+    public void setProductQuantity(Product product, int quantity) {
         // implementation
     }
 
@@ -24,7 +24,7 @@ public class Cart {
      * @param product product name
      * @return true if product was removed, false if product not found
      */
-    public boolean removeProduct(String product) {
+    public boolean removeProduct(Product product) {
         // implementation
         return false;
     }
