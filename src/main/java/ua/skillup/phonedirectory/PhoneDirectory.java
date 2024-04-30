@@ -71,4 +71,9 @@ public class PhoneDirectory {
     public void updateName(String phone, String name) {
         phoneDirectory.put(phone, name);
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }

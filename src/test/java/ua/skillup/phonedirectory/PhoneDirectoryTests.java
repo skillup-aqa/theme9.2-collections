@@ -3,6 +3,9 @@ package ua.skillup.phonedirectory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import static org.testng.Assert.*;
 
 public class PhoneDirectoryTests {
@@ -53,5 +56,16 @@ public class PhoneDirectoryTests {
         phoneDirectory.addEntry("John Doe", "1234567890");
         phoneDirectory.updateName("1234567890", "Jane Doe");
         assertEquals(phoneDirectory.getName("1234567890"), "Jane Doe");
+    }
+
+    @Test
+    public void testToString() {
+        phoneDirectory.addEntry("John Doe", "1234567890");
+        phoneDirectory.addEntry("Jane Doe", "0987654321");
+
+        Pattern pattern = Pattern.compile("Jane Doe.*0987654321.*John Doe.*1234567890", Pattern.DOTALL);
+        Matcher matcher = pattern.matcher(phoneDirectory.toString());
+        assertTrue(matcher.matches());
+
     }
 }
