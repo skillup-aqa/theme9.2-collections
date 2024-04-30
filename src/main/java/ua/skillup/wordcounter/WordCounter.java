@@ -1,8 +1,10 @@
 package ua.skillup.wordcounter;
 
+import java.util.Map;
+
 public class WordCounter {
-    public static int countWords(String input) {
+    public static Map<String, Integer> countWords(String input) {
         // implementation
-        return 0;
+        return null;
     }
 }

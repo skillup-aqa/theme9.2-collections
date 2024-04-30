@@ -13,8 +13,8 @@ public class WordCounterTest {
                 {"", 0},
                 {null, 0},
                 {"Hello", 1},
-                {"Hello, world!", 2},
-                {"The sentence! And another one.", 5}
+                {"Water-based", 1},
+                {"Hello, hello!", 2},
         };
     }
 
