@@ -22,7 +22,7 @@ public class CartTest {
         cart.addProduct(apple, 42);
         String bill = cart.generateBill();
         assertTrue(bill.contains(apple.getName()));
-        assertTrue(bill.contains(apple.getPrice() + ""));
+        assertTrue(bill.contains(String.format("%.2f", apple.getPrice())));
         assertTrue(bill.contains("42"));
     }
 
@@ -32,7 +32,7 @@ public class CartTest {
         cart.removeProduct(apple);
         String bill = cart.generateBill();
         assertFalse(bill.contains(apple.getName()));
-        assertFalse(bill.contains(apple.getPrice() + ""));
+        assertTrue(bill.contains(String.format("%.2f", apple.getPrice())));
         assertFalse(bill.contains("42"));
     }
 
