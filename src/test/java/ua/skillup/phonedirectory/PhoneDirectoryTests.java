@@ -3,6 +3,7 @@ package ua.skillup.phonedirectory;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,8 +30,49 @@ public class PhoneDirectoryTests {
     }
 
     @Test
+    public void testGetPhone() {
+        phoneDirectory.addEntry("John Doe", "1234567890");
+        phoneDirectory.addEntry("Jane Doe", "0987654321");
+
+        List<String> results = phoneDirectory.searchByName("John Doe");
+        assertNotNull(results);
+        assertEquals(results.size(), 1);
+
+        String result = results.get(0);
+        assertTrue(result.contains("John Doe"));
+        assertTrue(result.contains("1234567890"));
+
+        assertFalse(result.contains("Jane Doe"));
+        assertFalse(result.contains("0987654321"));
+    }
+
+    @Test
+    public void testGetMultiplePhones() {
+        phoneDirectory.addEntry("John Doe", "1234567890");
+        phoneDirectory.addEntry("Jane Doe", "0987654321");
+
+        List<String> results = phoneDirectory.searchByName("Doe");
+        assertNotNull(results);
+        assertEquals(results.size(), 2);
+
+        assertTrue(results.get(0).contains("John Doe") || results.get(1).contains("John Doe"));
+        assertTrue(results.get(0).contains("1234567890") || results.get(1).contains("1234567890"));
+
+        assertTrue(results.get(0).contains("Jane Doe") || results.get(1).contains("Jane Doe"));
+        assertTrue(results.get(0).contains("0987654321") || results.get(1).contains("0987654321"));
+    }
+
+    @Test
     public void testGetPhoneForMissingName() {
-        assertEquals(phoneDirectory.getPhone("John Doe").size(), 0);
+        List<String> results = phoneDirectory.searchByName("John Doe");
+        assertNotNull(results);
+        assertEquals(phoneDirectory.searchByName("John Doe").size(), 0);
+    }
+
+    @Test
+    public void testGetName() {
+        phoneDirectory.addEntry("John Doe", "1234567890");
+        assertEquals(phoneDirectory.getName("1234567890"), "John Doe");
     }
 
     @Test
@@ -62,10 +104,8 @@ public class PhoneDirectoryTests {
     public void testToString() {
         phoneDirectory.addEntry("John Doe", "1234567890");
         phoneDirectory.addEntry("Jane Doe", "0987654321");
-
         Pattern pattern = Pattern.compile("Jane Doe.*0987654321.*John Doe.*1234567890", Pattern.DOTALL);
         Matcher matcher = pattern.matcher(phoneDirectory.toString());
-        assertTrue(matcher.matches());
-
+        assertTrue(matcher.find());
     }
 }

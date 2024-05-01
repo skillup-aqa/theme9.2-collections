@@ -21,7 +21,7 @@ public class PhoneDirectory {
      * @return the list of phone numbers and names matching the given name
      * or an empty list if the person with the given name does not exist in the phone directory
      */
-    public List<String> getPhone(String name) {
+    public List<String> searchByName(String name) {
         // implementation
         return null;
     }
@@ -59,6 +59,12 @@ public class PhoneDirectory {
         // implementation
     }
 
+    /**
+     * Returns a string representation of the phone directory:
+     * all phone numbers and names ordered by name.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return null;
