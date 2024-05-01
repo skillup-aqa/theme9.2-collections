@@ -14,4 +14,9 @@ public class IsogramCheckerTests {
     public void testIsogramNegative() {
         assertFalse(IsogramChecker.isIsogram("banana"));
     }
+
+    @Test
+    public void testIsogramEmpty() {
+        assertFalse(IsogramChecker.isIsogram(""));
+    }
 }

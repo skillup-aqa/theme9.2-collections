@@ -8,19 +8,33 @@ public class Cart {
 
     /**
      * Add product to cart or increase quantity if product already in cart
-     * @param product product name
+     *
+     * @param product  product name
      * @param quantity quantity of product
      */
     public void addProduct(Product product, int quantity) {
-        this.items.add(new CartItem(product, quantity));
+        this.items.stream().filter(item -> item.getProduct().equals(product))
+                .findFirst()
+                .ifPresentOrElse(item -> item.setQuantity(item.getQuantity() + quantity),
+                        () -> this.items.add(new CartItem(product, quantity)));
     }
 
     /**
-     * Remove product from cart
+     * Set quantity of product in cart. Remove product if quantity is 0
+     *
      * @param product product name
-     * @throws IllegalArgumentException if product not found
+     * @throws IllegalArgumentException if product not found or quantity is less than 0
      */
     public void setProductQuantity(Product product, int quantity) {
+        if (quantity < 0) {
+            throw new IllegalArgumentException("Quantity should be positive");
+        }
+
+        if (quantity == 0) {
+            removeProduct(product);
+            return;
+        }
+
         this.items.stream()
                 .filter(item -> item.getProduct().equals(product))
                 .findFirst()
@@ -30,6 +44,7 @@ public class Cart {
 
     /**
      * Remove product from cart
+     *
      * @param product product name
      * @return true if product was removed, false if product not found
      */
@@ -39,6 +54,7 @@ public class Cart {
 
     /**
      * Get total price of all products in cart
+     *
      * @return total price
      */
     public double getTotalPrice() {
@@ -56,7 +72,7 @@ public class Cart {
     }
 
     private static class CartItem {
-        private Product product;
+        private final Product product;
         private int quantity;
 
         public CartItem(Product product, int quantity) {
