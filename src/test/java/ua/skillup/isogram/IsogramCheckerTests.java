@@ -3,11 +3,12 @@ package ua.skillup.isogram;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class IsogramCheckerTests {
     @Test
     public void testIsogramPositive() {
-        assertFalse(IsogramChecker.isIsogram("ambidextrously"));
+        assertTrue(IsogramChecker.isIsogram("abc"));
     }
 
     @Test
