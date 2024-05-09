@@ -23,7 +23,12 @@ public class MainToTest {
         System.out.println(phone);
         System.out.println(phone.removeEntry("1234"));
         System.out.println(phone);
-
+        phone.addEntry("To Replace", "56789");
+        System.out.println(phone);
+        phone.updateName("2323", "Pupkin");
+        phone.updateName("56789", "Is Replaced");
+        System.out.println(phone);
+        System.out.println(phone.searchByName("Ni"));
 
     }
 }

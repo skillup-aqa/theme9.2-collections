@@ -3,6 +3,7 @@ package ua.skillup.phonedirectory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class PhoneDirectory {
 
@@ -34,8 +35,10 @@ public class PhoneDirectory {
      * or an empty list if the person with the given name does not exist in the phone directory
      */
     public List<String> searchByName(String name) {
-
-        return null;
+        return phoneMap.entrySet().stream()
+                .filter(entry -> entry.getValue().contains(name))
+                .map(entry -> String.format("%s: %s", entry.getValue(), entry.getKey()))
+                .collect(Collectors.toList());
     }
 
     /**
@@ -66,7 +69,12 @@ public class PhoneDirectory {
      * @param name  the new name of the person
      */
     public void updateName(String phone, String name) {
-        // implementation
+        if (phoneMap.containsKey(phone)) {
+            phoneMap.put(phone, name);
+            System.out.println("Value replaced successfully.");
+        } else {
+            System.out.println("Key not found in the map.");
+        }
     }
 
     /**
@@ -77,6 +85,15 @@ public class PhoneDirectory {
      */
     @Override
     public String toString() {
-        return phoneMap.entrySet().toString();
+//        return phoneMap.entrySet().stream()
+//                .sorted(Map.Entry.comparingByKey())
+//                .collect(Collectors.toList()).toString();
+
+        //Taken from Keys
+        StringBuilder builder = new StringBuilder("=== Phone Directory ===\n\n");
+        phoneMap.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(e -> builder.append(e.getValue()).append(": ").append(e.getKey()).append("\n"));
+        return builder.toString();
     }
 }
