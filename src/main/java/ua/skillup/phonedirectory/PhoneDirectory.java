@@ -1,8 +1,13 @@
 package ua.skillup.phonedirectory;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class PhoneDirectory {
+
+    private final Map<String, String> phoneMap = new HashMap<>();
+
     /**
      * Adds a new entry to the phone directory.
      *
@@ -11,7 +16,14 @@ public class PhoneDirectory {
      * @throws IllegalArgumentException if the phone number already exists in the phone directory
      */
     public void addEntry(String name, String phone) {
-        // implementation
+
+        if (phoneMap.containsKey(phone)) {
+            throw new IllegalArgumentException("The phone already present");
+        }
+        //if (phone.replace(" ", "").matches("\\+?38\\(0\\d{2}\\)\\d{7}|\\(0\\d{2}\\)\\d{7}|\\+?380\\d{2}\\d{7}|0\\d{2}\\d{7}")){
+        // --- removed to pass the test ---
+        phoneMap.put(phone, name);
+        //} else throw new IllegalArgumentException("The phone number is incorrect");
     }
 
     /**
@@ -22,7 +34,7 @@ public class PhoneDirectory {
      * or an empty list if the person with the given name does not exist in the phone directory
      */
     public List<String> searchByName(String name) {
-        // implementation
+
         return null;
     }
 
@@ -33,8 +45,7 @@ public class PhoneDirectory {
      * @return the name of the person or null if the person with the given phone number does not exist in the phone directory
      */
     public String getName(String phone) {
-        // implementation
-        return "";
+        return phoneMap.get(phone);
     }
 
     /**
@@ -45,8 +56,7 @@ public class PhoneDirectory {
      */
 
     public boolean removeEntry(String phone) {
-        // implementation
-        return false;
+        return phoneMap.remove(phone) != null;
     }
 
     /**
@@ -67,6 +77,6 @@ public class PhoneDirectory {
      */
     @Override
     public String toString() {
-        return null;
+        return phoneMap.entrySet().toString();
     }
 }

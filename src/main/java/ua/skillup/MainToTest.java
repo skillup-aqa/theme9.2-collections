@@ -18,7 +18,6 @@ public class MainToTest {
         phone.addEntry("To Remove", "1234");
 
 
-
         System.out.println(phone.getName("+38 066 000 22 33"));
 
         System.out.println(phone);
