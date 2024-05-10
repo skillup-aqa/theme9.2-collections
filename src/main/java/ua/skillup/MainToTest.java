@@ -2,6 +2,10 @@ package ua.skillup;
 
 import ua.skillup.isogram.IsogramChecker;
 import ua.skillup.phonedirectory.PhoneDirectory;
+import ua.skillup.wordcounter.WordCounter;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainToTest {
     public static void main(String[] args) {
@@ -29,6 +33,10 @@ public class MainToTest {
         phone.updateName("56789", "Is Replaced");
         System.out.println(phone);
         System.out.println(phone.searchByName("Ni"));
+
+
+        String text = "This is a sample-pemple sentence, with some words and! some is possibe sentence.";
+        System.out.println(WordCounter.countWords(text));
 
     }
 }
