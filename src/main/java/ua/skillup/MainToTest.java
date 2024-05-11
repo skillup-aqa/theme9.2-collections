@@ -50,11 +50,13 @@ public class MainToTest {
         listForProduct.addProduct(cheese, 2);
         listForProduct.addProduct(salo, 3);
         listForProduct.addProduct(bread, 2);
+        listForProduct.addProduct(water, 10);
         listForProduct.setProductQuantity(salo, 4);
-        System.out.println(listForProduct.removeProduct(water));
+
+        listForProduct.setProductQuantity(water, 0);
+        // System.out.println(listForProduct.removeProduct(water));
         System.out.println(listForProduct.removeProduct(bread));
         System.out.println(listForProduct.generateBill());
-
 
 
     }

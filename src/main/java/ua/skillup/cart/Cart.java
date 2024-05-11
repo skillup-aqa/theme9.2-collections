@@ -31,10 +31,11 @@ public class Cart {
 
         if (quantity == 0) {
             removeProduct(product);
+        } else {
+            this.items.stream().filter(item -> item.getProduct().equals(product))
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("There is no such product")).setQuantity(quantity);
         }
-        this.items.stream().filter(item -> item.getProduct().equals(product))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("There is no such product")).setQuantity(quantity);
 
     }
 
@@ -54,7 +55,7 @@ public class Cart {
      * @return total price
      */
     public double getTotalPrice() {
-        return this.items.stream().mapToDouble(item ->item.getTotal()).sum();
+        return this.items.stream().mapToDouble(item -> item.getTotal()).sum();
     }
 
     /**
