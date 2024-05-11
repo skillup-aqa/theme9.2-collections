@@ -1,5 +1,7 @@
 package ua.skillup;
 
+import ua.skillup.cart.Cart;
+import ua.skillup.cart.Product;
 import ua.skillup.isogram.IsogramChecker;
 import ua.skillup.phonedirectory.PhoneDirectory;
 import ua.skillup.wordcounter.WordCounter;
@@ -34,9 +36,26 @@ public class MainToTest {
         System.out.println(phone);
         System.out.println(phone.searchByName("Ni"));
 
-
+        System.out.println("--- Words counter ---");
         String text = "This is a sample-pemple sentence, with some words and! some is possibe sentence.";
         System.out.println(WordCounter.countWords(text));
+
+        System.out.println("--- Cart ---");
+        Cart listForProduct = new Cart();
+        Product cheese = new Product("Cheese", 2.5);
+        Product salo = new Product("Salo", 3.8);
+        Product bread = new Product("Bread", 1.74);
+        Product water = new Product("Water", 0.2);
+
+        listForProduct.addProduct(cheese, 2);
+        listForProduct.addProduct(salo, 3);
+        listForProduct.addProduct(bread, 2);
+        listForProduct.setProductQuantity(salo, 4);
+        System.out.println(listForProduct.removeProduct(water));
+        System.out.println(listForProduct.removeProduct(bread));
+        System.out.println(listForProduct.generateBill());
+
+
 
     }
 }
