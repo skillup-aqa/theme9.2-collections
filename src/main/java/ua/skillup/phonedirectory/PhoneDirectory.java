@@ -54,6 +54,7 @@ public class PhoneDirectory {
      *
      * @param phone the phone number of the person
      * @param name  the new name of the person
+     * @throws IllegalArgumentException if the person with the given phone number does not exist in the phone directory
      */
     public void updateName(String phone, String name) {
         // implementation

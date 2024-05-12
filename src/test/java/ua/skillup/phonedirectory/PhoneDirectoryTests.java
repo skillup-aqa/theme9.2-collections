@@ -101,6 +101,11 @@ public class PhoneDirectoryTests {
     }
 
     @Test
+    public void testUpdateNameForMissingPhone() {
+        assertThrows(IllegalArgumentException.class, () -> phoneDirectory.updateName("1234567890", "Jane Doe"));
+    }
+
+    @Test
     public void testToString() {
         phoneDirectory.addEntry("John Doe", "1234567890");
         phoneDirectory.addEntry("Jane Doe", "0987654321");
