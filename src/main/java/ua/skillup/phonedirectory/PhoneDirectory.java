@@ -70,6 +70,9 @@ public class PhoneDirectory {
      * @throws IllegalArgumentException if the person with the given phone number does not exist in the phone directory
      */
     public void updateName(String phone, String name) {
+        if (!phoneDirectory.containsKey(phone)) {
+            throw new IllegalArgumentException("Phone number does not exist");
+        }
         phoneDirectory.put(phone, name);
     }
 
@@ -77,7 +80,7 @@ public class PhoneDirectory {
      * Returns a string representation of the phone directory:
      * all phone numbers and names ordered by name.
      *
-     * @return
+     * @return a string representation of the phone directoryd
      */
     @Override
     public String toString() {
