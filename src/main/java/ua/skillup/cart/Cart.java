@@ -63,6 +63,13 @@ public class Cart {
                 .sum();
     }
 
+    /**
+     * Generate bill for all products in cart
+     * Include product name, quantity, price per unit,
+     * total price per product and total price for all products
+     *
+     * @return bill as string
+     */
     public String generateBill() {
         StringBuilder bill = new StringBuilder();
         this.items.forEach(item -> bill.append(String.format("%s: %d x %.2f = %.2f\n",

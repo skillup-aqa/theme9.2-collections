@@ -67,11 +67,18 @@ public class PhoneDirectory {
      *
      * @param phone the phone number of the person
      * @param name  the new name of the person
+     * @throws IllegalArgumentException if the person with the given phone number does not exist in the phone directory
      */
     public void updateName(String phone, String name) {
         phoneDirectory.put(phone, name);
     }
 
+    /**
+     * Returns a string representation of the phone directory:
+     * all phone numbers and names ordered by name.
+     *
+     * @return
+     */
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("=== Phone Directory ===\n\n");
